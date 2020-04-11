@@ -1,0 +1,53 @@
+{% extends "blog/base.html" %}
+{% block content %}	
+
+	<div class = "posts">
+		<div>
+			<img src="{{ user.profile.image.url }}" width="52" height="62">
+		</div>
+		<div>
+
+			<div class = "posts2">
+				<p class = "author">{{ post.author }}
+				<span style = "color:#000000; font-size:13px;">
+				{{ post.date_posted|date:"F d, Y" }}</span></p>
+				{% if object.author == 	user %}
+					<a href="{% url 'post-update' object.id %}" class = "link-sup">Update</a>
+					<a href="{% url 'post-delete' object.id %}" class = "link-sup">Delete</a>
+				{% endif %}
+			</div>
+
+			<hr class ="new">
+			<a href = "{% url 'post-detail' post.id %}" class = "link">{{ post.title }}</a>	
+			<p>{{ post.content }}</p>
+			
+
+			<div>
+				<hr>
+				<a href="{% url 'add_comment_to_post' pk=post.pk %}" style = "background-color: #0D4392; color: white; border-radius: 12px; padding: 15px; width: 100px; rgin-left: 150px; ont-size: 15px;">Add comment</a>
+				{% for comment in post.comments.all %}
+		    		{% if user.is_authenticated or comment.approved_comment %}
+		   			<div class = "posts3">
+		   				<strong style = "color: blue; margin-top: 100px;">{{ comment.author }}</strong>
+		        		<div>
+		            		{{ comment.created_date }}
+		            		{% if not comment.approved_comment %}
+		                		<a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+		                		<a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+		            		{% endif %}
+		        		</div>
+		       			<p>{{ comment.text|linebreaks }}</p>
+		    		</div>
+		    		{% endif %}
+				{% empty %}
+		    		<p>No comments here yet :(</p>
+				{% endfor %}
+			</div>
+
+		</div>
+	</div>
+	
+
+
+{% endblock content %}
+
