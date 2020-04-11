@@ -20,6 +20,7 @@
 			<hr class ="new">
 			<a href = "{% url 'post-detail' post.id %}" class = "link">{{ post.title }}</a>	
 			<p>{{ post.content }}</p>
+			<img src="{{ post.image.url }}" width="42" height="42">
 			
 
 			<div>
