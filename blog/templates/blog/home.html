@@ -15,7 +15,7 @@
 				</div>
 				<hr class ="new">
 				<a href = "{% url 'post-detail' post.id %}" class = "link">{{ post.title }}</a>	
-				<a style = "text-decoration: none; color: black;margin-left: 380px;" href="{% url 'post-detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+				<a style = "text-decoration: none; color: black;margin-left: 380px;" href="{% url 'post-detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
 				<p>{{ post.content }}</p>
 			</div>
 		</div>
