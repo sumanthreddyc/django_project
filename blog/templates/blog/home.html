@@ -1,4 +1,4 @@
-{% extends "blog/base.html" %}	
+   {% extends "blog/base.html" %}
 
 {% block content %}	
 	{% for post in posts %}
@@ -16,7 +16,7 @@
 				<hr class ="new">
 				<a href = "{% url 'post-detail' post.id %}" class = "link">{{ post.title }}</a>	
 				<a style = "text-decoration: none; color: black;margin-left: 380px;" href="{% url 'post-detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
-				<p>{{ post.content }}</p>
+				<p>{{ post.content | safe }}</p>
 			</div>
 		</div>
 

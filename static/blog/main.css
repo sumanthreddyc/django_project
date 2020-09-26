@@ -1,0 +1,136 @@
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: 40px 600px ;
+  grid-column-gap: 25px;
+  border: 1px solid black;
+  background-color: #D3D3D3;
+  width: 700px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+.posts .posts1 {
+  display: grid;
+  grid-template-rows: 3px 40px auto;
+}
+
+.posts .posts2 {
+  display: grid;
+  grid-template-columns: 200px 60px 60px;
+}
+
+.posts .posts3 {
+  display: grid;
+  grid-template-columns: 150px 500px ;
+  border: 0.6px solid black;
+  border-radius: 7px;
+}
+
+.posts .author {
+  color:blue;
+}
+
+.posts .link {
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+}
+
+.posts .posts2 .link-sup {
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  margin-top: 18px;
+  text-decoration: underline;
+}
+
+.posts .link {
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+}
+
+img {
+  border-radius: 50%;
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
+.posts .new {
+  border-top: 1px solid black;
+}
+
+
+.profile {
+  display: grid;
+  grid-template-columns: 40px 600px ;
+  background-color: #D3D3D3;
+  width: 700px;
+  margin-left: 100px;
+  border-radius: 7px;
+}
+
+.profile .legend {
+  margin-left: 300px;
+  font-size: 30px;
+}
+
+.post { 
+  background-color: #D3D3D3;
+  width: 700px;
+  margin-left: 100px;
+  border-radius: 7px;
+  font-size: 18px;
+}
+
+.post legend {
+  margin-left: 250px;
+  font-size: 23px;
+}
+
+.post button {
+  background-color: black;
+  color: white;
+  border-radius: 12px;
+  padding: 15px;
+  width: 100px;
+  margin-left: 150px;
+  font-size: 15px;
+}
+
+.comment {
+    border: 1px solid black;
+    background-color: #D3D3D3;
+    width: 700px;
+    border-radius: 7px;
+}

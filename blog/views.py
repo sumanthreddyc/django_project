@@ -11,7 +11,7 @@ from django.views.generic import (
 from django.http import HttpResponse
 from .models import Post, Comment
 from django import forms
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 
 def home(request): 
@@ -29,13 +29,13 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
 	model = Post
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-	model = Post
-	fields = ['title', 'content', 'image']
+#class PostCreateView(LoginRequiredMixin, CreateView):
+	#model = Post
+	#fields = ['title', 'content', 'image']
 
-	def form_valid(self, form):
-		form.instance.author = self.request.user  
-		return super().form_valid(form)
+	#def form_valid(self, form):
+		#form.instance.author = self.request.user  
+		#return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
@@ -93,3 +93,26 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
+
+#@login_required
+#def post_new(request):
+    #if request.method == "POST":
+        #current_user = request.user
+        #u_form = PostForm(request.POST, request.FILES)
+
+        #if u_form.is_valid():
+        	#u_form.save()
+        	#return redirect ('post-detail')
+
+    #else:
+        #form = PostForm()
+
+    #return render(request, 'blog/post_form.html', {'form': form})
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+	model = Post
+	fields = ['title', 'content', 'image']
+
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
