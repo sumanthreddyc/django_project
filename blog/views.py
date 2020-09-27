@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.forms.models import model_to_dict
 from django.views.generic import (
 	ListView,
 	DetailView, 
@@ -8,26 +9,43 @@ from django.views.generic import (
 	UpdateView,
 	DeleteView
 )
+import json
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import Post, Comment
 from django import forms
 from .forms import CommentForm, PostForm
 
 
 def home(request): 
-	context = {
-		'posts': Post.objects.all()
-	}
-	return render(request, 'blog/home.html', context)
+	#context = {
+		#'posts': Post.objects.all()
+	#}
+	#return render(request, 'blog/home.html', context)
 
-class PostListView(ListView):
-	model = Post
-	template_name = 'blog/home.html'
-	context_object_name = 'posts'
-	ordering = ['-date_posted']
+	posts = Post.objects.all().values()
+	posts_list = list(posts)
 
-class PostDetailView(DetailView):
-	model = Post
+	return JsonResponse(posts_list, safe=False)
+
+
+# class PostListView(ListView):
+# 	model = Post
+# 	template_name = 'blog/home.html'
+# 	context_object_name = 'posts'
+# 	ordering = ['-date_posted']
+
+	#posts =  Post.objects.all().values()
+	##return JsonResponse(posts_list, safe = False)
+
+#class PostDetailView(DetailView):
+	#model = Post
+
+def PostDetailASJSON(request, pk):
+	post = list(Post.objects.filter(id=pk).values())[0]
+	comments = list(Comment.objects.filter(post_id=pk).values())
+	posts = {'post': post, 'comments': comments}
+	return JsonResponse(posts, safe=False)
 
 #class PostCreateView(LoginRequiredMixin, CreateView):
 	#model = Post
